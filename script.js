@@ -38,6 +38,13 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   revealElements.forEach((element) => element.classList.add('is-visible'));
 }
 
+document.querySelectorAll('.comparison-range').forEach((range) => {
+  const stage = range.closest('.comparison-stage');
+  const updateComparison = () => stage.style.setProperty('--split', `${range.value}%`);
+  range.addEventListener('input', updateComparison);
+  updateComparison();
+});
+
 document.querySelector('#enquiry-form').addEventListener('submit', (event) => {
   event.preventDefault();
   const form = event.currentTarget;
